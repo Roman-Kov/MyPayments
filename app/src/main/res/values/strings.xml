@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">My Payments</string>
+    <string name="app_name" translatable="false">My Payments</string>
+
+    <!-- Auth fragment -->
+    <string name="hint_login">Login</string>
+    <string name="btn_login">Login</string>
+    <string name="hint_password">Password</string>
+    <string name="description_payment_image" translatable="false">Payment image</string>
 </resources>

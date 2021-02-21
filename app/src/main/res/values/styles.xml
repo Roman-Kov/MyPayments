@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Text30spPrimaryColorFontBoldStyle">
+        <item name="android:textColor">@color/app_default_font_primary</item>
+        <item name="android:textSize">@dimen/app_default_text_30</item>
+    </style>
+</resources>
