@@ -1,7 +1,8 @@
-package com.rojer_ko.mypayments
+package com.rojer_ko.mypayments.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.rojer_ko.mypayments.R
 
 class MainActivity: AppCompatActivity() {
 
