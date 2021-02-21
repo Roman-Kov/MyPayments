@@ -5,4 +5,10 @@
     <string name="hint_login">Имя пользователя</string>
     <string name="btn_login">Войти</string>
     <string name="hint_password">Пароль</string>
+
+    <!-- Payments fragment -->
+    <string name="btn_logout">Logout</string>
+    <string name="toolbar_payments_title">Мои платежи</string>
+    <string name="logout_from_account">Выйти из учетной записи?</string>
+
 </resources>
