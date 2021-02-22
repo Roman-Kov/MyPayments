@@ -1,7 +1,6 @@
 package com.rojer_ko.mypayments.data.provider
 
 import android.content.SharedPreferences
-import com.rojer_ko.mypayments.domain.LocalAuthProvider
 
 class LocalAuthProviderImpl(private val tokenPrefs: SharedPreferences): LocalAuthProvider {
 

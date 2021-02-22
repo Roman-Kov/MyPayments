@@ -1,22 +1,34 @@
 package com.rojer_ko.mypayments.data.repository
 
-import com.rojer_ko.mypayments.domain.AuthRepository
-import com.rojer_ko.mypayments.domain.DataResult
-import com.rojer_ko.mypayments.domain.LocalAuthProvider
+import com.rojer_ko.mypayments.data.provider.AuthProvider
+import com.rojer_ko.mypayments.data.provider.LocalAuthProvider
+import com.rojer_ko.mypayments.domain.contracts.AuthRepository
+import com.rojer_ko.mypayments.domain.model.DataResult
 import com.rojer_ko.mypayments.utils.Consts
 
 var ACCESS_TOKEN = ""
 
-class AuthRepositoryImpl(private val localAuthProvider: LocalAuthProvider): AuthRepository {
+class AuthRepositoryImpl(
+    private val localAuthProvider: LocalAuthProvider,
+    private val authProvider: AuthProvider
+): AuthRepository {
 
     override suspend fun login(login: String, secret: String): DataResult {
-        return if (login == "demo" && secret == "12345") {
-            val token = "AAA_BBB_CCC_DDD"
-            ACCESS_TOKEN = token
-            localAuthProvider.saveToken(token)
-            DataResult.Success(Consts.Result.OK)
-        } else {
-            DataResult.Error(Throwable(Consts.Error.LOGIN_PASSWORD_WRONG))
+        return when (val tokenResult = authProvider.login(login, secret)) {
+            is DataResult.Success<*> -> {
+                val token: String = tokenResult.data.toString()
+                if (token.isNotBlank()) {
+                    ACCESS_TOKEN = token
+                    localAuthProvider.saveToken(token)
+                    DataResult.Success(Consts.Result.OK)
+                } else {
+                    DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+                }
+            }
+            is DataResult.Error -> {
+                tokenResult
+            }
+            else -> DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
         }
     }
 
@@ -33,6 +45,7 @@ class AuthRepositoryImpl(private val localAuthProvider: LocalAuthProvider): Auth
     }
 
     override suspend fun logout() {
+        ACCESS_TOKEN = ""
         localAuthProvider.removeToken()
     }
 }

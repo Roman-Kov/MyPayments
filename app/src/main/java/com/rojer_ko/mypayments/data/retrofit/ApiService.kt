@@ -8,12 +8,12 @@ import retrofit2.http.POST
 
 interface ApiService {
 
-    @POST("/login")
+    @POST("login")
     @FormUrlEncoded
     suspend fun getTokenAsync(
         @Field("login")
         username: String,
         @Field("password")
-        password: String
+        secret: String
     ): Response<JsonObject>
 }

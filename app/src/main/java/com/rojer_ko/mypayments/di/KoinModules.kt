@@ -2,11 +2,13 @@ package com.rojer_ko.mypayments.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.rojer_ko.mypayments.data.provider.AuthProvider
+import com.rojer_ko.mypayments.data.provider.AuthProviderImpl
+import com.rojer_ko.mypayments.data.provider.LocalAuthProvider
 import com.rojer_ko.mypayments.data.provider.LocalAuthProviderImpl
 import com.rojer_ko.mypayments.data.repository.AuthRepositoryImpl
 import com.rojer_ko.mypayments.data.retrofit.*
 import com.rojer_ko.mypayments.domain.contracts.AuthRepository
-import com.rojer_ko.mypayments.data.provider.LocalAuthProvider
 import com.rojer_ko.mypayments.presentation.viewmodel.AuthViewModel
 import com.rojer_ko.mypayments.presentation.viewmodel.PaymentsViewModel
 import okhttp3.OkHttpClient
@@ -59,7 +61,8 @@ val appModule = module {
     single { getApi(get()) }
     single { androidApplication().getSharedPreferences(TOKEN_PREFERENCES, Context.MODE_PRIVATE) }
     single<LocalAuthProvider> { LocalAuthProviderImpl(get()) }
-    single<AuthRepository> { AuthRepositoryImpl(get()) }
+    single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<AuthProvider> { AuthProviderImpl(get()) }
 }
 val authModule = module {
     viewModel { AuthViewModel(get()) }
