@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rojer_ko.mypayments.domain.AuthRepository
-import com.rojer_ko.mypayments.domain.DataResult
+import com.rojer_ko.mypayments.domain.contracts.AuthRepository
+import com.rojer_ko.mypayments.domain.model.DataResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

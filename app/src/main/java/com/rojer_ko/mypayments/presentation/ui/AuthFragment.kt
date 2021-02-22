@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.rojer_ko.mypayments.R
-import com.rojer_ko.mypayments.domain.DataResult
+import com.rojer_ko.mypayments.domain.model.DataResult
 import com.rojer_ko.mypayments.presentation.viewmodel.AuthViewModel
 import com.rojer_ko.mypayments.utils.AppTextWatcher
 import com.rojer_ko.mypayments.utils.showToast

@@ -2,7 +2,7 @@ package com.rojer_ko.mypayments.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rojer_ko.mypayments.domain.AuthRepository
+import com.rojer_ko.mypayments.domain.contracts.AuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

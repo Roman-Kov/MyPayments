@@ -1,4 +1,4 @@
-package com.rojer_ko.mypayments.domain
+package com.rojer_ko.mypayments.domain.model
 
 sealed class DataResult {
 

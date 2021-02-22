@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="appSnackbarDuration">7000</integer>
+    <integer name="appSnackbarDuration">4000</integer>
 </resources>
