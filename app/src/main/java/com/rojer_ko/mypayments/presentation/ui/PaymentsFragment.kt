@@ -10,10 +10,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.rojer_ko.mypayments.R
+import com.rojer_ko.mypayments.domain.model.DataResult
 import com.rojer_ko.mypayments.presentation.viewmodel.PaymentsViewModel
+import com.rojer_ko.mypayments.utils.showToast
+import kotlinx.android.synthetic.main.fragment_payments.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class PaymentsFragment: BaseFragment() {
+class PaymentsFragment : BaseFragment() {
 
     override val layout = R.layout.fragment_payments
     private val viewModel by viewModel<PaymentsViewModel>()
@@ -40,9 +43,39 @@ class PaymentsFragment: BaseFragment() {
             R.id.payments_logout -> {
                 showLogoutSnackbar()
             }
+            R.id.payments_refresh -> {
+                refreshPayments()
+            }
             else -> Unit
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        observePaymentsResult()
+        refreshPayments()
+    }
+
+    private fun observePaymentsResult() {
+        viewModel.paymentsResult.observe(viewLifecycleOwner, {
+            when (it) {
+                is DataResult.Process -> {
+                    payments_progress_bar.visibility = View.VISIBLE
+                }
+                is DataResult.Success<*> -> {
+                    payments_progress_bar.visibility = View.GONE
+                }
+                is DataResult.Error -> {
+                    showToast(it.error.message.toString())
+                    payments_progress_bar.visibility = View.GONE
+                }
+            }
+        })
+    }
+
+    private fun refreshPayments() {
+        viewModel.getPayments()
     }
 
     private fun showLogoutSnackbar() {

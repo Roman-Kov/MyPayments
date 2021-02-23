@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/payments_refresh"
+        android:icon="@drawable/ic_baseline_refresh_24"
+        android:title="@string/btn_logout"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/payments_logout"
         android:icon="@drawable/ic_baseline_directions_run_24"
         android:title="@string/btn_logout"

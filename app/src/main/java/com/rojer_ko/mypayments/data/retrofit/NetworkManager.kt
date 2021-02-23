@@ -11,7 +11,7 @@ class NetworkManager(private val context: Context) {
     companion object {
 
         private const val CONNECTION_PORT = 80
-        private const val CONNECTION_TIMEOUT = 1500
+        private const val CONNECTION_TIMEOUT = 5000
     }
 
     fun isNetworkAvailable(): Boolean {
