@@ -2,7 +2,6 @@ package com.rojer_ko.mypayments.presentation.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.rojer_ko.mypayments.R
 import com.rojer_ko.mypayments.domain.model.DataResult

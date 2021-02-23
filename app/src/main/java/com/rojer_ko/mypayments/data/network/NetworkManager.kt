@@ -15,7 +15,8 @@ class NetworkManager(private val context: Context) {
     }
 
     fun isNetworkAvailable(): Boolean {
-        val cm: ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm: ConnectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (cm.activeNetwork == null) return false
 
         return try {

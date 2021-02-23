@@ -9,7 +9,8 @@ import com.rojer_ko.mypayments.data.provider.LocalAuthProvider
 import com.rojer_ko.mypayments.data.provider.LocalAuthProviderImpl
 import com.rojer_ko.mypayments.data.repository.AuthRepositoryImpl
 import com.rojer_ko.mypayments.data.repository.PaymentsRepositoryImpl
-import com.rojer_ko.mypayments.data.retrofit.*
+import com.rojer_ko.mypayments.data.retrofit.ApiService
+import com.rojer_ko.mypayments.data.retrofit.AppInterceptor
 import com.rojer_ko.mypayments.domain.contracts.AuthRepository
 import com.rojer_ko.mypayments.domain.contracts.PaymentsRepository
 import com.rojer_ko.mypayments.domain.interactor.PaymentsInteractorImpl
