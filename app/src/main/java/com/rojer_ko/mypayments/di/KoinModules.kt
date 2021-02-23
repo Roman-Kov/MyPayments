@@ -7,13 +7,18 @@ import com.rojer_ko.mypayments.data.provider.AuthProviderImpl
 import com.rojer_ko.mypayments.data.provider.LocalAuthProvider
 import com.rojer_ko.mypayments.data.provider.LocalAuthProviderImpl
 import com.rojer_ko.mypayments.data.repository.AuthRepositoryImpl
+import com.rojer_ko.mypayments.data.repository.PaymentsRepositoryImpl
 import com.rojer_ko.mypayments.data.retrofit.*
 import com.rojer_ko.mypayments.domain.contracts.AuthRepository
+import com.rojer_ko.mypayments.domain.contracts.PaymentsRepository
+import com.rojer_ko.mypayments.domain.interactor.PaymentsInteractorImpl
+import com.rojer_ko.mypayments.presentation.contracts.PaymentsInteractor
 import com.rojer_ko.mypayments.presentation.viewmodel.AuthViewModel
 import com.rojer_ko.mypayments.presentation.viewmodel.PaymentsViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -56,17 +61,20 @@ private fun getApi(retrofit: Retrofit): ApiService {
 }
 
 val appModule = module {
+    single { NetworkManager(androidContext()) }
     single { getOkHttpClient() }
     single { getRetrofit(get()) }
     single { getApi(get()) }
     single { androidApplication().getSharedPreferences(TOKEN_PREFERENCES, Context.MODE_PRIVATE) }
     single<LocalAuthProvider> { LocalAuthProviderImpl(get()) }
-    single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<AuthRepository> { AuthRepositoryImpl(get(), get(), get()) }
     single<AuthProvider> { AuthProviderImpl(get()) }
+    single<PaymentsRepository> { PaymentsRepositoryImpl(get(), get()) }
+    single<PaymentsInteractor> { PaymentsInteractorImpl(get()) }
 }
 val authModule = module {
     viewModel { AuthViewModel(get()) }
 }
 val paymentsModule = module {
-    viewModel { PaymentsViewModel(get()) }
+    viewModel { PaymentsViewModel(get(), get()) }
 }

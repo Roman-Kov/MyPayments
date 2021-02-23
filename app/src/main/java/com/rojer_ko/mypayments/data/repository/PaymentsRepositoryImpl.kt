@@ -1,27 +1,33 @@
-package com.rojer_ko.mypayments.data.provider
+package com.rojer_ko.mypayments.data.repository
 
 import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
-import com.rojer_ko.mypayments.data.model.BaseAuthResponse
+import com.rojer_ko.mypayments.data.model.BasePaymentsResponse
 import com.rojer_ko.mypayments.data.retrofit.ApiService
+import com.rojer_ko.mypayments.data.retrofit.NetworkManager
+import com.rojer_ko.mypayments.domain.contracts.PaymentsRepository
 import com.rojer_ko.mypayments.domain.model.DataResult
 import com.rojer_ko.mypayments.utils.Consts
 
-class AuthProviderImpl(private val api: ApiService) : AuthProvider {
+class PaymentsRepositoryImpl(
+    private val api: ApiService,
+    private val networkManager: NetworkManager
+): PaymentsRepository {
 
     private val gson = GsonBuilder().setLenient().create()
 
-    override suspend fun login(login: String, secret: String): DataResult {
-        val response = api.getTokenAsync(login, secret)
+    override suspend fun getPayments(): DataResult {
+        if (!networkManager.isNetworkAvailable()) {
+            return DataResult.Error(Throwable(Consts.Error.NETWORK_UNAVAILABLE))
+        }
+        val response = api.getPaymentsAsync(ACCESS_TOKEN)
         return if (response.isSuccessful) {
             try {
-                val baseResponse = gson.fromJson(response.body(), BaseAuthResponse::class.java)
+                val baseResponse = gson.fromJson(response.body(), BasePaymentsResponse::class.java)
                 when (baseResponse.success) {
                     true -> {
-                        baseResponse.response?.let {
-                            DataResult.Success(it.token)
-                        } ?: DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+                        DataResult.Success(baseResponse.response ?: listOf())
                     }
                     false -> DataResult.Error(Throwable(Consts.Error.LOGIN_PASSWORD_WRONG))
                 }

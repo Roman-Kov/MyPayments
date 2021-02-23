@@ -15,6 +15,7 @@ sealed class Consts {
             const val LOGIN_PASSWORD_WRONG = "Login or password wrong"
             const val TOKEN_IS_BLANK = "Token is blank"
             const val BAD_RESPONSE = "Bad response"
+            const val NETWORK_UNAVAILABLE = "Network unavailable"
         }
     }
 }

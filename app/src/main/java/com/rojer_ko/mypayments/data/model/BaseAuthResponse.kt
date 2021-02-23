@@ -2,11 +2,11 @@ package com.rojer_ko.mypayments.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class BaseResponse(
+data class BaseAuthResponse(
 	@SerializedName("success")
 	val success: Boolean,
 	@SerializedName("response")
-	val response: ResponseDTO?,
+	val response: TokenResponseDTO?,
 	@SerializedName("error")
 	val error: ErrorDTO?
 )
