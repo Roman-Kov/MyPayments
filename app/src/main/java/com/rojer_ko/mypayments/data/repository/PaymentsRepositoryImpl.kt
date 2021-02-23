@@ -6,7 +6,7 @@ import com.google.gson.JsonSyntaxException
 import com.rojer_ko.mypayments.data.model.BasePaymentsResponse
 import com.rojer_ko.mypayments.data.model.PaymentsResponseDTO
 import com.rojer_ko.mypayments.data.retrofit.ApiService
-import com.rojer_ko.mypayments.data.retrofit.NetworkManager
+import com.rojer_ko.mypayments.data.network.NetworkManager
 import com.rojer_ko.mypayments.domain.contracts.PaymentsRepository
 import com.rojer_ko.mypayments.domain.model.DataResult
 import com.rojer_ko.mypayments.utils.Consts

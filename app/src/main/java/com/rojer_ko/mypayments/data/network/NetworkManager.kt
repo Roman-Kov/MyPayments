@@ -1,4 +1,4 @@
-package com.rojer_ko.mypayments.data.retrofit
+package com.rojer_ko.mypayments.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager

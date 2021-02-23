@@ -2,7 +2,7 @@ package com.rojer_ko.mypayments.data.repository
 
 import com.rojer_ko.mypayments.data.provider.AuthProvider
 import com.rojer_ko.mypayments.data.provider.LocalAuthProvider
-import com.rojer_ko.mypayments.data.retrofit.NetworkManager
+import com.rojer_ko.mypayments.data.network.NetworkManager
 import com.rojer_ko.mypayments.domain.contracts.AuthRepository
 import com.rojer_ko.mypayments.domain.model.DataResult
 import com.rojer_ko.mypayments.utils.Consts

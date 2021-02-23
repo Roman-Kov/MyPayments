@@ -2,6 +2,7 @@ package com.rojer_ko.mypayments.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.rojer_ko.mypayments.data.network.*
 import com.rojer_ko.mypayments.data.provider.AuthProvider
 import com.rojer_ko.mypayments.data.provider.AuthProviderImpl
 import com.rojer_ko.mypayments.data.provider.LocalAuthProvider
