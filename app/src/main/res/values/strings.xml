@@ -2,7 +2,12 @@
     <string name="app_name" translatable="false">My Payments</string>
 
     <!-- Base -->
+    <string name="yes" >Yes</string>
+    <string name="no" >No</string>
     <string name="ok" translatable="false">OK</string>
+
+    <!-- Main activity -->
+    <string name="exit_from_app">Exit the program?</string>
 
     <!-- Auth fragment -->
     <string name="hint_login">Login</string>

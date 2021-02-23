@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Base -->
+    <string name="yes" >Да</string>
+    <string name="no" >Нет</string>
+
+    <!-- Main activity -->
+    <string name="exit_from_app">Выйти из программы?</string>
+
     <!-- Auth fragment -->
     <string name="hint_login">Имя пользователя</string>
     <string name="btn_login">Войти</string>
