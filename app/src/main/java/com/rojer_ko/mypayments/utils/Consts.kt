@@ -9,13 +9,11 @@ sealed class Consts {
         }
     }
 
-    class Error{
-        companion object {
-
-            const val LOGIN_PASSWORD_WRONG = "Login or password wrong"
-            const val TOKEN_IS_BLANK = "Token is blank"
-            const val BAD_RESPONSE = "Bad response"
-            const val NETWORK_UNAVAILABLE = "Network unavailable"
-        }
+    enum class Error(val text: String){
+        LOGIN_PASSWORD_WRONG ("Login or password wrong"),
+        TOKEN_IS_BLANK ("Token is blank"),
+        BAD_RESPONSE ("Bad response"),
+        NETWORK_UNAVAILABLE ("Network unavailable"),
+        UNKNOWN ("Unknown error")
     }
 }

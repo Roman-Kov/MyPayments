@@ -20,7 +20,7 @@ class PaymentsRepositoryImpl(
 
     override suspend fun getPayments(): DataResult<List<PaymentsResponseDTO>> {
         if (!networkManager.isNetworkAvailable()) {
-            return DataResult.Error(Throwable(Consts.Error.NETWORK_UNAVAILABLE))
+            return DataResult.Error(Throwable(Consts.Error.NETWORK_UNAVAILABLE.text))
         }
         val response = api.getPaymentsAsync(ACCESS_TOKEN)
         return if (response.isSuccessful) {
@@ -30,14 +30,14 @@ class PaymentsRepositoryImpl(
                     true -> {
                         DataResult.Success(baseResponse.response ?: listOf())
                     }
-                    false -> DataResult.Error(Throwable(Consts.Error.LOGIN_PASSWORD_WRONG))
+                    false -> DataResult.Error(Throwable(Consts.Error.LOGIN_PASSWORD_WRONG.text))
                 }
             } catch (e: JsonSyntaxException) {
                 Log.e("Api", Exception(e).message.toString())
-                DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+                DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
             }
         } else {
-            DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+            DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
         }
     }
 }

@@ -13,8 +13,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.rojer_ko.mypayments.R
 import com.rojer_ko.mypayments.domain.model.DataResult
 import com.rojer_ko.mypayments.domain.model.Payments
+import com.rojer_ko.mypayments.presentation.converter.ErrorStringConverter
 import com.rojer_ko.mypayments.presentation.converter.PaymentItemConverter
 import com.rojer_ko.mypayments.presentation.viewmodel.PaymentsViewModel
+import com.rojer_ko.mypayments.utils.Consts
 import com.rojer_ko.mypayments.utils.showToast
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -74,7 +76,13 @@ class PaymentsFragment : BaseFragment() {
                     initRecyclerView(data)
                 }
                 is DataResult.Error -> {
-                    showToast(it.error.message.toString())
+                    val error = context?.let { context ->
+                        ErrorStringConverter.convertToContainer(
+                            context,
+                            it.error.message.toString()
+                        )
+                    } ?: Consts.Error.BAD_RESPONSE.text
+                    showToast(error)
                     payments_progress_bar.visibility = View.GONE
                 }
             }

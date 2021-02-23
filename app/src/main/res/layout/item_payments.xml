@@ -36,28 +36,15 @@
             tools:text="operation 1" />
 
         <TextView
-            android:id="@+id/payment_amount"
+            android:id="@+id/payment_amount_currency"
             style="@style/Text30spSecondaryColorFontBoldStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/app_default_margin_top"
-            app:layout_constraintEnd_toStartOf="@+id/payment_currency"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/payment_description"
-            tools:text="1000,00" />
-
-        <TextView
-            android:id="@+id/payment_currency"
-            style="@style/Text30spSecondaryColorFontBoldStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/app_default_margin_top"
-            app:layout_constraintBottom_toBottomOf="@id/payment_amount"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/payment_amount"
-            tools:text="USDT" />
+            tools:text="100000,00 TRON" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

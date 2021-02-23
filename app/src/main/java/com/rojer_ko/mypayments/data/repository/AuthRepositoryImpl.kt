@@ -18,7 +18,7 @@ class AuthRepositoryImpl(
 
     override suspend fun login(login: String, secret: String): DataResult<String> {
         if (!networkManager.isNetworkAvailable()) {
-            return DataResult.Error(Throwable(Consts.Error.NETWORK_UNAVAILABLE))
+            return DataResult.Error(Throwable(Consts.Error.NETWORK_UNAVAILABLE.text))
         }
         return when (val tokenResult = authProvider.login(login, secret)) {
             is DataResult.Success<*> -> {
@@ -28,13 +28,13 @@ class AuthRepositoryImpl(
                     localAuthProvider.saveToken(token)
                     DataResult.Success(Consts.Result.OK)
                 } else {
-                    DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+                    DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
                 }
             }
             is DataResult.Error -> {
                 tokenResult
             }
-            else -> DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+            else -> DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
         }
     }
 
@@ -45,7 +45,7 @@ class AuthRepositoryImpl(
             DataResult.Success(Consts.Result.OK)
         } else {
             DataResult.Error(
-                Throwable(Consts.Error.TOKEN_IS_BLANK)
+                Throwable(Consts.Error.TOKEN_IS_BLANK.text)
             )
         }
     }

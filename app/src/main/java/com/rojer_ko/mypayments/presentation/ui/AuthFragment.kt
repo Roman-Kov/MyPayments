@@ -5,13 +5,15 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.rojer_ko.mypayments.R
 import com.rojer_ko.mypayments.domain.model.DataResult
+import com.rojer_ko.mypayments.presentation.converter.ErrorStringConverter
 import com.rojer_ko.mypayments.presentation.viewmodel.AuthViewModel
 import com.rojer_ko.mypayments.utils.AppTextWatcher
+import com.rojer_ko.mypayments.utils.Consts
 import com.rojer_ko.mypayments.utils.showToast
 import kotlinx.android.synthetic.main.fragment_auth.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class AuthFragment: BaseFragment() {
+class AuthFragment : BaseFragment() {
 
     override val layout = R.layout.fragment_auth
     private val viewModel by viewModel<AuthViewModel>()
@@ -88,7 +90,13 @@ class AuthFragment: BaseFragment() {
                     navigateToPaymentsFragment()
                 }
                 is DataResult.Error -> {
-                    showToast(it.error.message.toString())
+                    val error = context?.let { context ->
+                        ErrorStringConverter.convertToContainer(
+                            context,
+                            it.error.message.toString()
+                        )
+                    } ?: Consts.Error.BAD_RESPONSE.text
+                    showToast(error)
                     changeFormEnableState(true)
                     auth_progress_bar.visibility = View.GONE
                 }

@@ -11,6 +11,10 @@ class PaymentsConverter {
         private const val MAX_CURR_LENGTH = 4
         private const val ROUNDING_CHARACTERS = 2
         private const val DATE_FORMAT = "dd.MM.yy hh:mm"
+        private const val UNKNOWN_OPERATION = "unknown operation"
+        private const val UNKNOWN_AMOUNT = "unknown amount"
+        private const val UNKNOWN_CURRENCY = "??"
+        private const val UNKNOWN_DATE = "unknown date"
 
         fun normalize(payments: List<PaymentsResponseDTO>): List<Payments> {
             val paymentsResult = mutableListOf<Payments>()
@@ -20,23 +24,23 @@ class PaymentsConverter {
                     it.subSequence(0, getMaxLength(it, MAX_DESC_LENGTH)).toString()
                 }.takeIf {
                     !it.isNullOrBlank()
-                } ?: "unknown operation"
+                } ?: UNKNOWN_OPERATION
                 val amount: String = try {
                     payment.amount?.let {
                         String.format("%.$ROUNDING_CHARACTERS" + "f", it.toDouble())
-                    } ?: "unknown amount"
+                    } ?: UNKNOWN_AMOUNT
                 } catch (e: Exception) {
-                    "unknown amount"
+                    UNKNOWN_AMOUNT
                 }.toString()
                 val currency = payment.currency?.let {
                     it.subSequence(0, getMaxLength(it, MAX_CURR_LENGTH)).toString()
                 }.takeIf {
                     !it.isNullOrBlank()
-                } ?: "??"
+                } ?: UNKNOWN_CURRENCY
                 val createdDate: String = try {
-                    payment.createdDate?.toLong()?.toDateString(DATE_FORMAT) ?: "unknown date"
+                    payment.createdDate?.toLong()?.toDateString(DATE_FORMAT) ?: UNKNOWN_DATE
                 } catch (e: Exception) {
-                    "unknown date"
+                    UNKNOWN_DATE
                 }.toString()
 
                 paymentsResult.add(Payments(description, amount, currency, createdDate))

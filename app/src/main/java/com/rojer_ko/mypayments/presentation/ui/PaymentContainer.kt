@@ -17,8 +17,8 @@ class PaymentContainer(
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.apply {
             payment_description.text = description
-            payment_amount.text = amount
-            payment_currency.text = currency
+            val amountCurrency = "$amount $currency"
+            payment_amount_currency.text = amountCurrency
             payment_date.text = createdDate
         }
     }

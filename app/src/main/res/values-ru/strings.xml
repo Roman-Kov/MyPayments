@@ -11,4 +11,11 @@
     <string name="toolbar_payments_title">Мои платежи</string>
     <string name="logout_from_account">Выйти из учетной записи?</string>
 
+    <!-- Errors -->
+    <string name="data_error">Ошибка получения данных</string>
+    <string name="login_password_error">Не верный логин или пароль</string>
+    <string name="network_unavailable_error">Проверьте соединение с Интернетом</string>
+    <string name="token_blank_error">Токен пуст или отсутствует</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+
 </resources>

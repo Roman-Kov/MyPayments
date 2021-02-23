@@ -17,7 +17,7 @@ class PaymentsInteractorImpl(private val repository: PaymentsRepository) : Payme
             is DataResult.Error -> {
                 result
             }
-            else -> DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+            else -> DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
         }
     }
 }

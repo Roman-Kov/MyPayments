@@ -21,16 +21,16 @@ class AuthProviderImpl(private val api: ApiService) : AuthProvider {
                     true -> {
                         baseResponse.response?.let {
                             DataResult.Success(it.token)
-                        } ?: DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+                        } ?: DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
                     }
-                    false -> DataResult.Error(Throwable(Consts.Error.LOGIN_PASSWORD_WRONG))
+                    false -> DataResult.Error(Throwable(Consts.Error.LOGIN_PASSWORD_WRONG.text))
                 }
             } catch (e: JsonSyntaxException) {
                 Log.e("Api", Exception(e).message.toString())
-                DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+                DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
             }
         } else {
-            DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE))
+            DataResult.Error(Throwable(Consts.Error.BAD_RESPONSE.text))
         }
     }
 }
