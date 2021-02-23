@@ -16,7 +16,7 @@ class AuthRepositoryImpl(
     private val networkManager: NetworkManager
 ): AuthRepository {
 
-    override suspend fun login(login: String, secret: String): DataResult {
+    override suspend fun login(login: String, secret: String): DataResult<String> {
         if (!networkManager.isNetworkAvailable()) {
             return DataResult.Error(Throwable(Consts.Error.NETWORK_UNAVAILABLE))
         }
@@ -38,7 +38,7 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun getToken(): DataResult {
+    override suspend fun getToken(): DataResult<String> {
         val token = localAuthProvider.getToken()
         return if (token.isNotBlank()) {
             ACCESS_TOKEN = token

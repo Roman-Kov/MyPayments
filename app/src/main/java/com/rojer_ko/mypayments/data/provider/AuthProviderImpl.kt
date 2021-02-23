@@ -12,7 +12,7 @@ class AuthProviderImpl(private val api: ApiService) : AuthProvider {
 
     private val gson = GsonBuilder().setLenient().create()
 
-    override suspend fun login(login: String, secret: String): DataResult {
+    override suspend fun login(login: String, secret: String): DataResult<String> {
         val response = api.getTokenAsync(login, secret)
         return if (response.isSuccessful) {
             try {

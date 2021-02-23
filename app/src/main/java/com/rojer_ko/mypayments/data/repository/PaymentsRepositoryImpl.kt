@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
 import com.rojer_ko.mypayments.data.model.BasePaymentsResponse
+import com.rojer_ko.mypayments.data.model.PaymentsResponseDTO
 import com.rojer_ko.mypayments.data.retrofit.ApiService
 import com.rojer_ko.mypayments.data.retrofit.NetworkManager
 import com.rojer_ko.mypayments.domain.contracts.PaymentsRepository
@@ -13,11 +14,11 @@ import com.rojer_ko.mypayments.utils.Consts
 class PaymentsRepositoryImpl(
     private val api: ApiService,
     private val networkManager: NetworkManager
-): PaymentsRepository {
+) : PaymentsRepository {
 
     private val gson = GsonBuilder().setLenient().create()
 
-    override suspend fun getPayments(): DataResult {
+    override suspend fun getPayments(): DataResult<List<PaymentsResponseDTO>> {
         if (!networkManager.isNetworkAvailable()) {
             return DataResult.Error(Throwable(Consts.Error.NETWORK_UNAVAILABLE))
         }

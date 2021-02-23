@@ -11,14 +11,14 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel(
     private val authRepository: AuthRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _formState: MutableLiveData<Boolean> = MutableLiveData(false)
     val formState: LiveData<Boolean> = _formState
-    private val _loginState: MutableLiveData<DataResult> = MutableLiveData()
-    val loginState: LiveData<DataResult> = _loginState
-    private val _tokenState: MutableLiveData<DataResult> = MutableLiveData()
-    val tokenState: LiveData<DataResult> = _tokenState
+    private val _loginState: MutableLiveData<DataResult<String>> = MutableLiveData()
+    val loginState: LiveData<DataResult<String>> = _loginState
+    private val _tokenState: MutableLiveData<DataResult<String>> = MutableLiveData()
+    val tokenState: LiveData<DataResult<String>> = _tokenState
 
     fun checkForm(fieldsValues: List<String>) {
         var isFormFilled = true

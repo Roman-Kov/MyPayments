@@ -68,9 +68,9 @@ class PaymentsFragment : BaseFragment() {
                 is DataResult.Process -> {
                     payments_progress_bar.visibility = View.VISIBLE
                 }
-                is DataResult.Success<*> -> {
+                is DataResult.Success<List<Payments>> -> {
                     payments_progress_bar.visibility = View.GONE
-                    val data = PaymentItemConverter.convertToContainer(it.data as List<Payments>)
+                    val data = PaymentItemConverter.convertToContainer(it.data)
                     initRecyclerView(data)
                 }
                 is DataResult.Error -> {

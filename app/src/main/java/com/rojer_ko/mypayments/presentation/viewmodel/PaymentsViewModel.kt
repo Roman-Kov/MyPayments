@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rojer_ko.mypayments.domain.contracts.AuthRepository
 import com.rojer_ko.mypayments.domain.model.DataResult
+import com.rojer_ko.mypayments.domain.model.Payments
 import com.rojer_ko.mypayments.presentation.contracts.PaymentsInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,8 +16,8 @@ class PaymentsViewModel(
     private val paymentsInteractor: PaymentsInteractor
 ) : ViewModel() {
 
-    private val _paymentsResult: MutableLiveData<DataResult> = MutableLiveData()
-    val paymentsResult: LiveData<DataResult> = _paymentsResult
+    private val _paymentsResult: MutableLiveData<DataResult<List<Payments>>> = MutableLiveData()
+    val paymentsResult: LiveData<DataResult<List<Payments>>> = _paymentsResult
 
     fun getPayments() {
         _paymentsResult.value = DataResult.Process
