@@ -2,6 +2,7 @@ package com.rojer_ko.mypayments.presentation.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.rojer_ko.mypayments.R
 import com.rojer_ko.mypayments.domain.model.DataResult
@@ -111,7 +112,6 @@ class AuthFragment : BaseFragment() {
     }
 
     private fun navigateToPaymentsFragment() {
-        findNavController().popBackStack(R.id.authFragment, true)
-        findNavController().navigate(R.id.paymentsFragment)
+        findNavController().navigate(R.id.action_authFragment_to_paymentsFragment)
     }
 }

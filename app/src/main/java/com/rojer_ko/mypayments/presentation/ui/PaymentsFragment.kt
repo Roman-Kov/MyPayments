@@ -127,7 +127,6 @@ class PaymentsFragment : BaseFragment() {
     }
 
     private fun navigateToAuthFragment() {
-        findNavController().popBackStack(R.id.paymentsFragment, true)
-        findNavController().navigate(R.id.authFragment)
+        findNavController().navigate(R.id.action_paymentsFragment_to_authFragment)
     }
 }
