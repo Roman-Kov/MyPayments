@@ -8,11 +8,16 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.rojer_ko.mypayments.R
 import com.rojer_ko.mypayments.domain.model.DataResult
+import com.rojer_ko.mypayments.domain.model.Payments
+import com.rojer_ko.mypayments.presentation.converter.PaymentItemConverter
 import com.rojer_ko.mypayments.presentation.viewmodel.PaymentsViewModel
 import com.rojer_ko.mypayments.utils.showToast
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.fragment_payments.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -65,6 +70,8 @@ class PaymentsFragment : BaseFragment() {
                 }
                 is DataResult.Success<*> -> {
                     payments_progress_bar.visibility = View.GONE
+                    val data = PaymentItemConverter.convertToContainer(it.data as List<Payments>)
+                    initRecyclerView(data)
                 }
                 is DataResult.Error -> {
                     showToast(it.error.message.toString())
@@ -76,6 +83,21 @@ class PaymentsFragment : BaseFragment() {
 
     private fun refreshPayments() {
         viewModel.getPayments()
+    }
+
+    private fun initRecyclerView(items: List<PaymentContainer>) {
+
+        val groupAdapter = GroupAdapter<GroupieViewHolder>().apply {
+            addAll(items)
+        }
+        payments_recyclerview.apply {
+            layoutManager = LinearLayoutManager(
+                activity?.applicationContext,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = groupAdapter
+        }
     }
 
     private fun showLogoutSnackbar() {

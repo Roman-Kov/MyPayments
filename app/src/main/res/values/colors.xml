@@ -3,10 +3,13 @@
 
     <!-- default colors -->
     <color name="app_default_primary">#FF7F11</color>
+    <color name="app_default_primary_dark">#9F4A01</color>
     <color name="app_default_secondary">#262626</color>
+    <color name="app_default_secondary_light">#686868</color>
     <color name="app_default_white">#FFFFFFFF</color>
     <color name="app_default_black">#FF000000</color>
 
     <!-- default font colors -->
     <color name="app_default_font_primary">#FF7F11</color>
+    <color name="app_default_font_secondary">#262626</color>
 </resources>

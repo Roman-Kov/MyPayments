@@ -11,7 +11,6 @@ class PaymentsInteractorImpl(private val repository: PaymentsRepository) : Payme
         return when (val result = repository.getPayments()) {
             is DataResult.Success<*> -> {
                 val payments = PaymentsConverter.normalize(result.data as List<PaymentsResponseDTO>)
-                println(payments.toString())
                 DataResult.Success(payments)
             }
             is DataResult.Error -> {

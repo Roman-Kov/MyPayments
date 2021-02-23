@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_default_secondary_light"
+    tools:context=".presentation.ui.PaymentsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/app_default_margin"
+        android:background="@drawable/item_rounded_primary_color"
+        android:elevation="10dp"
+        android:padding="@dimen/app_default_padding">
+
+        <TextView
+            android:id="@+id/payment_date"
+            style="@style/Text18spSecondaryColorFontBoldStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_default_margin_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10.10.10 10:10" />
+
+        <TextView
+            android:id="@+id/payment_description"
+            style="@style/Text20spSecondaryColorFontBoldStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_default_margin_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/payment_date"
+            tools:text="operation 1" />
+
+        <TextView
+            android:id="@+id/payment_amount"
+            style="@style/Text30spSecondaryColorFontBoldStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_default_margin_top"
+            app:layout_constraintEnd_toStartOf="@+id/payment_currency"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/payment_description"
+            tools:text="1000,00" />
+
+        <TextView
+            android:id="@+id/payment_currency"
+            style="@style/Text30spSecondaryColorFontBoldStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/app_default_margin_top"
+            app:layout_constraintBottom_toBottomOf="@id/payment_amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/payment_amount"
+            tools:text="USDT" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
